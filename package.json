@@ -1,6 +1,6 @@
 {
   "name": "@nichoth/anchor-js",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "main": "anchor.js",
   "author": "Bryan Braun (https://github.com/bryanbraun)",
   "description": "A JavaScript utility for adding deep anchor links to online docs.",
@@ -45,4 +45,3 @@
     "uglify-js": "^3.14.3"
   }
 }
-
