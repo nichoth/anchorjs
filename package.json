@@ -1,5 +1,5 @@
 {
-  "name": "anchor-js",
+  "name": "@nichoth/anchor-js",
   "version": "4.3.1",
   "main": "anchor.js",
   "author": "Bryan Braun (https://github.com/bryanbraun)",
@@ -23,6 +23,7 @@
     "anchor.min.js"
   ],
   "scripts": {
+    "postversion": "git push --follow-tags && npm publish",
     "add-banner": "node banner.js",
     "copy-dist": "shx cp anchor.js docs/anchor.js",
     "jasmine": "karma start test/karma.conf.js --single-run",
@@ -44,3 +45,4 @@
     "uglify-js": "^3.14.3"
   }
 }
+
