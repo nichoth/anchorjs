@@ -23,6 +23,7 @@
     "anchor.min.js"
   ],
   "scripts": {
+    "preversion": "npm run lint",
     "postversion": "git push --follow-tags && npm publish",
     "add-banner": "node banner.js",
     "copy-dist": "shx cp anchor.js docs/anchor.js",
