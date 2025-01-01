@@ -11,13 +11,13 @@ A JavaScript utility for adding deep anchor links ([like these](https://ux.stack
 Download AnchorJS using npm,
 
 ```bash
-npm install anchor-js
+npm i -S @nichoth/anchor-js
 ```
 
 ...and then include it into your project:
 
 ```js
-import AnchorJS from 'anchor-js';
+import AnchorJS from '@nichoth/anchor-js';
 
 const anchors = new AnchorJS();
 anchors.add();
@@ -26,7 +26,7 @@ anchors.add();
 You could also include it in your webpage via a CDN like [CDNJS](https://cdnjs.com/libraries/anchor-js) or [jsDelivr](https://www.jsdelivr.com/package/npm/anchor-js).
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@nichoth/anchor-js/anchor.min.js"></script>
 <script>
    anchors.add();
 </script>
