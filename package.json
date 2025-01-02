@@ -23,6 +23,7 @@
   ],
   "scripts": {
     "preversion": "npm run lint",
+    "version": "npm run build && git add .",
     "postversion": "git push --follow-tags && npm publish",
     "add-banner": "node banner.js",
     "copy-dist": "shx cp anchor.js docs/anchor.js",
