@@ -21,13 +21,6 @@
   <link rel="stylesheet" href="fonts/fonts.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-twilight.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="grunticon/grunticon.loader.js"></script>
-  <script>
-    grunticon(["grunticon/icons.data.svg.css", "grunticon/icons.data.png.css", "grunticon/icons.fallback.css"]);
-  </script>
-  <noscript>
-    <link rel="stylesheet" href="grunticon/icons.fallback.css">
-  </noscript>
 </head>
 <body>
   <a href="https://github.com/bryanbraun/anchorjs" class="github-corner" aria-label="View source on GitHub">
@@ -105,7 +98,7 @@ anchors.add('p');</code></pre>
           width="96"
           height="96">
       </a>
-      <a href="https://middlemanapp.com/basics/install/">
+      <a href="https://middlemanapp.com/basics/start-new-site/">
         <img srcset="https://avatars1.githubusercontent.com/u/1280820?v=3&s=96,
                      https://avatars1.githubusercontent.com/u/1280820?v=3&s=192 2x"
           src="https://avatars1.githubusercontent.com/u/1280820?v=3&s=96"
@@ -125,7 +118,7 @@ anchors.add('p');</code></pre>
           width="96"
           height="96">
       </a>
-      <a href="https://bundler.io/v1.15/guides/deploying.html">
+      <a href="https://bundler.io/guides/faq.html">
         <img srcset="https://avatars1.githubusercontent.com/u/1137638?v=3&s=96,
                      https://avatars1.githubusercontent.com/u/1137638?v=3&s=192 2x"
           src="https://avatars1.githubusercontent.com/u/1137638?v=3&s=96"
@@ -154,11 +147,15 @@ anchors.add('p');</code></pre>
 
 const anchors = new AnchorJS();
 anchors.add();</code></pre>
-    <p>You could also include it in your webpage via a CDN like <a href="https://cdnjs.com/libraries/anchor-js">CDNJS</a> or <a href="https://www.jsdelivr.com/package/npm/anchor-js">jsDelivr</a>:</p>
+    <p>You could also include it in your webpage via a CDN like <a href="https://cdnjs.com/libraries/anchor-js">CDNJS</a> or <a href="https://www.jsdelivr.com/package/npm/anchor-js">jsDelivr</a>,</p>
     <pre class="src-js"><code>&#x3C;script src=&#x22;https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
 &#x3C;script&#x3E;
   anchors.add();
 &#x3C;/script&#x3E;</code></pre>
+    <p>...or import it globally with ES Modules:</p>
+    <pre class="src-js"><code>import 'https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js';
+
+anchors.add();</code></pre>
 
     <h2>Basic usage</h2>
     <p>AnchorJS provides the <code>anchors.add()</code> method which takes a CSS selector (similar to jQuery) for targeting elements you want to deep-link. Here are some usage examples.</p>
@@ -190,7 +187,7 @@ anchors.add();</code></pre>
     anchors.add();
   &lt;/script&gt;
 &lt;/body&gt;</code></pre>
-<p>...or on DOMContentLoaded:</p>
+    <p>...or on DOMContentLoaded:</p>
     <pre class="src-js"><code>// Add anchors on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function(event) {
   anchors.add();
@@ -219,9 +216,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
           </tr>
           <tr>
             <td><code>visible</code></td>
-            <td><code>hover</code> <br> <code>always</code> <br> <code>touch</code></td>
+            <td><code>hover</code> <br> <code>always</code></td>
             <td><code>hover</code></td>
-            <td><code>hover</code> displays the anchor when hovering over the element.<br> <code>always</code> will always display the anchor link. <br> <code>touch</code> will <em>always</em> display anchors for devices that support touch events, and only display them via <em>hover</em> for devices that do not support touch events. This approximates touchscreen detection (but <a href="http://www.stucox.com/blog/you-cant-detect-a-touchscreen/">isn't 100% accurate</a>).</td>
+            <td><code>hover</code> displays the anchor when hovering over the element.<br> <code>always</code> will always display the anchor link.</td>
           </tr>
           <tr>
             <td><code>icon</code></td>
@@ -334,7 +331,7 @@ anchors.add();
 &lt;script&gt;
   anchors.add('h3');
 &lt;/script&gt;</code></pre>
-      <p>This allows you to do things like <a href="https://css-tricks.com/on-target/#article-header-id-3">highlight sections when your users jump to them</a>.</p>
+      <p>This allows you to do things like <a href="https://css-tricks.com/css-target/#aa-a-perfect-use-highlighting-sections">highlight sections when your users jump to them</a>.</p>
     </section>
 
     <h3>Multiple sets of anchors</h3>
@@ -363,16 +360,16 @@ anchors.remove('h1');
  */
 anchors.removeAll();</code></pre>
     <p>Removing anchors with <code>.remove()</code> should be uncommon. If you simply want anchors on a more selective group, consider using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:not">the CSS <em>:not()</em> pseudo-class</a> when you add them, like so:</p>
-<pre class="src-js"><code>/**
+    <pre class="src-js"><code>/**
  * Example 2
  * Add anchors to all h2s, except for those with a class of "no-anchor".
  */
 anchors.add('h2:not(.no-anchor)');</code></pre>
 
-<h3>Chaining commands</h3>
-<p>You can chain commands of <code>add()</code> and <code>remove()</code> (since they return a copy of <code>anchors</code>), but it's usually more performant to lean on CSS when targeting elements:
+    <h3>Chaining commands</h3>
+    <p>You can chain commands of <code>add()</code> and <code>remove()</code> (since they return a copy of <code>anchors</code>), but it's usually more performant to lean on CSS when targeting elements:
 
-<pre class="src-js"><code>/**
+    <pre class="src-js"><code>/**
  * Example 1
  * Adds anchors to `.my-anchors` and `.my-other-anchors` except for those
  * with a class of `no-anchor`.
@@ -501,8 +498,9 @@ anchors.add('p');</code></pre>
 anchors.add('h3');</code></pre>
           <pre class="css"><code>.anchorjs-link {
   font-weight: 200;
-  margin-left: 1em;
-  padding-right: .375em;
+  margin-left: 1em !important;
+  padding-right: .375em !important;
+  padding-left: .375em !important;
   font-size: .5em;
   border: 1px dashed #ffbaac;
   vertical-align: middle;
@@ -547,17 +545,18 @@ anchors.add('h3');</code></pre>
           <pre class="css"><code>.anchorjs-link {
   display: inline-block;
   height: 32px;
-  width: 18px;
+  width: 32px;
   border-radius: 50%;
   background-color: #ff5231;
   color: #fff;
   margin-top: 4px;
   margin-left: -1.4em !important;
+  padding: 0 !important;
 }
-.anchorjs-link::before {
-  margin-left: 7px;
-  margin-top: -4px;
-  display: block;
+.anchorjs-link::after {
+  position: absolute;
+  top: -5px;
+  left: 5px;
 }</code></pre>
         </div>
       </div>
@@ -594,7 +593,7 @@ anchors.add('h3');</code></pre>
           <pre class="css"><code>.anchorjs-link {
   display: inline-block;
   background: url("img/hyperlink.svg") no-repeat;
-  margin-left: 8px;
+  margin-left: 8px !important;
   width: 14px;
   height: 24px;
 }</code></pre>
@@ -617,7 +616,8 @@ anchors.add('h3');</code></pre>
   background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMCIgdmlld0JveD0iMCAwIDIwIDEwIj48cGF0aCBmaWxsPSIjZmY1MjMxIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNSAwaC0yLjY5NWMuOTM3LjYyNSAxLjgxNiAxLjczOCAyLjA5IDIuNWguNTg1YzEuMjcgMCAyLjUgMS4yNSAyLjUgMi41cy0xLjI3IDIuNS0yLjUgMi41aC0zLjc1QzEwIDcuNSA4LjczIDYuMjUgOC43MyA1YzAtLjQ1LjEzNy0uODc5LjM1Mi0xLjI1SDYuNDA2Yy0uMDk3LjQxLS4xNTYuODItLjE1NiAxLjI1IDAgMi41IDIuNDggNSA0Ljk4IDVIMTVjMi41IDAgNS0yLjUgNS01cy0yLjUtNS01LTV6TTUuNjA1IDcuNUg1LjAyYy0xLjI3IDAtMi41LTEuMjUtMi41LTIuNXMxLjI3LTIuNSAyLjUtMi41aDMuNzVjMS4yMyAwIDIuNSAxLjI1IDIuNSAyLjUgMCAuNDUtLjEzNy44NzktLjM1MiAxLjI1aDIuNjc2Yy4wOTctLjQxLjE1Ni0uODIuMTU2LTEuMjUgMC0yLjUtMi40OC01LTQuOTgtNUg1QzIuNSAwIDAgMi41IDAgNXMyLjUgNSA1IDVoMi42OTVjLS45MzctLjYyNS0xLjgxNi0xLjczOC0yLjA5LTIuNXoiLz48L3N2Zz4=") no-repeat;
   margin-top: 15px;
   height: 16px;
-  width: 20px;
+  width: 6px;
+  margin-left: -1em !important;
 }</code></pre>
         </div>
       </div>
@@ -642,6 +642,8 @@ anchors.add('h3');</code></pre>
   margin-top: 10px;
   font-size: 22px;
   padding-right: 0 !important;
+  padding-left: 0 !important;
+  margin-left: -1em !important;
 }</code></pre>
         </div>
       </div>
@@ -659,33 +661,7 @@ anchors.add('h3');</code></pre>
 };
 anchors.add('p');</code></pre>
           <pre class="css"><code>.anchorjs-link {
-  margin-left: -1.8em !important;
-}</code></pre>
-        </div>
-      </div>
-
-      <div class="example">
-        <div class="example-content">
-          <h3>Grunticon</h3>
-          <p>Lorem ipsum dolor consectetur amet nulla elit. Vivamus luctus urna sed urna ultricies. Vivamus luctus urna sed.</p>
-          <a href="#" class="example-code-link">{}</a>
-        </div>
-        <div class="example-code">
-          <pre class="js"><code>// Assuming you have set up
-// grunticon and you have a
-// grunticon class named
-// 'icon-grunticon-link'...
-anchors.options = {
-  visible: 'always',
-  class: 'icon-grunticon-link'
-  icon: ''
-};
-anchors.add('h3');</code></pre>
-          <pre class="css"><code>.anchorjs-link {
-  display: inline-block;
-  margin-left: .375em;
-  width: .375em;
-  height: 20px;
+  margin-left: -2.05em !important;
 }</code></pre>
         </div>
       </div>
@@ -733,7 +709,7 @@ anchors.add('h3');</code></pre>
   transition: all .25s linear;
 }
 *:hover > .anchorjs-link {
-  margin-left: -1.125em !important;
+  margin-left: -1.375em !important;
 }</code></pre>
         </div>
       </div>
@@ -835,7 +811,7 @@ anchors.add('h3');</code></pre>
     </div>
     <footer class="footer"><p><small>Made by <a href="https://www.bryanbraun.com/">Bryan</a>. You should <a href="https://twitter.com/intent/tweet?text=Hi%20%40BryanEBraun%2C%20">say hi</a> sometime. 👋</small></p></footer>
   </section>
-  <script src="anchor.js"></script>
+  <script src="docs-anchor.js"></script>
   <script src="scripts.js"></script>
   <script>
     anchors.add('.main > h2, .main > h3, .main > section > h2, .main > section > h3').remove('.used-by-label');
@@ -932,13 +908,6 @@ anchors.add('h3');</code></pre>
       icon: '⚓'
     });
     ex15.add('.examples .example:nth-child(15) p');
-
-    var ex16 = new AnchorJS({
-      visible: 'always',
-      class: 'icon-grunticon-link',
-      icon: ''
-    });
-    ex16.add('.examples .example:nth-child(16) h3');
 
     var hovEx1 = new AnchorJS();
     hovEx1.add('.hover-examples .example:nth-child(1) h3');

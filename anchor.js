@@ -2,7 +2,7 @@
 /* globals module:false */
 
 // https://github.com/umdjs/umd/blob/master/templates/returnExports.js
-(function (root, factory) {
+(function(root, factory) {
   'use strict';
 
   if (typeof define === 'function' && define.amd) {
@@ -18,7 +18,7 @@
     root.AnchorJS = factory();
     root.anchors = new root.AnchorJS();
   }
-}(this, function () {
+}(globalThis, function() {
   'use strict';
 
   function AnchorJS(options) {
@@ -31,7 +31,7 @@
      */
     function _applyRemainingDefaultOptions(opts) {
       opts.icon = Object.prototype.hasOwnProperty.call(opts, 'icon') ? opts.icon : '\uE9CB'; // Accepts characters (and also URLs?), like  '#', '¶', '❡', or '§'.
-      opts.visible = Object.prototype.hasOwnProperty.call(opts, 'visible') ? opts.visible : 'hover'; // Also accepts 'always' & 'touch'
+      opts.visible = Object.prototype.hasOwnProperty.call(opts, 'visible') ? opts.visible : 'hover'; // Also accepts 'always'
       opts.placement = Object.prototype.hasOwnProperty.call(opts, 'placement') ? opts.placement : 'right'; // Also accepts 'left'
       opts.ariaLabel = Object.prototype.hasOwnProperty.call(opts, 'ariaLabel') ? opts.ariaLabel : 'Anchor'; // Accepts any text.
       opts.class = Object.prototype.hasOwnProperty.call(opts, 'class') ? opts.class : ''; // Accepts any class name.
@@ -69,7 +69,6 @@
           tidyText,
           newTidyText,
           anchor,
-          visibleOptionToUse,
           hrefBase,
           indexesToDrop = [];
 
@@ -78,11 +77,6 @@
       //
       // anchors.options = { visible: 'always'; }
       _applyRemainingDefaultOptions(this.options);
-
-      visibleOptionToUse = this.options.visible;
-      if (visibleOptionToUse === 'touch') {
-        visibleOptionToUse = this.isTouchDevice() ? 'always' : 'hover';
-      }
 
       // Provide a sensible default selector, if none is given.
       if (!selector) {
@@ -156,7 +150,7 @@
         hrefBase = this.options.base || hrefBase;
         anchor.href = hrefBase + '#' + elementID;
 
-        if (visibleOptionToUse === 'always') {
+        if (this.options.visible === 'always') {
           anchor.style.opacity = '1';
         }
 
@@ -174,11 +168,14 @@
 
         if (this.options.placement === 'left') {
           anchor.style.position = 'absolute';
-          anchor.style.marginLeft = '-1em';
-          anchor.style.paddingRight = '.5em';
+          anchor.style.marginLeft = '-1.25em';
+          anchor.style.paddingRight = '.25em';
+          anchor.style.paddingLeft = '.25em';
           elements[i].insertBefore(anchor, elements[i].firstChild);
         } else { // if the option provided is `right` (or anything else).
-          anchor.style.paddingLeft = '.375em';
+          anchor.style.marginLeft = '.1875em';
+          anchor.style.paddingRight = '.1875em';
+          anchor.style.paddingLeft = '.1875em';
           elements[i].appendChild(anchor);
         }
       }
@@ -288,7 +285,6 @@
       if (typeof input === 'string' || input instanceof String) {
         // See https://davidwalsh.name/nodelist-array for the technique transforming nodeList -> Array.
         elements = [].slice.call(document.querySelectorAll(input));
-      // I checked the 'input instanceof NodeList' test in IE9 and modern browsers and it worked for me.
       } else if (Array.isArray(input) || input instanceof NodeList) {
         elements = [].slice.call(input);
       } else {

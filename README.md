@@ -14,7 +14,7 @@ Download AnchorJS using npm,
 npm i -S @nichoth/anchor-js
 ```
 
-...and then include it into your project:
+…and then include it into your project:
 
 ```js
 import AnchorJS from '@nichoth/anchor-js';
@@ -23,13 +23,21 @@ const anchors = new AnchorJS();
 anchors.add();
 ```
 
-You could also include it in your webpage via a CDN like [CDNJS](https://cdnjs.com/libraries/anchor-js) or [jsDelivr](https://www.jsdelivr.com/package/npm/anchor-js).
+You could also include it in your webpage via a CDN like [CDNJS](https://cdnjs.com/libraries/anchor-js) or [jsDelivr](https://www.jsdelivr.com/package/npm/anchor-js),
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@nichoth/anchor-js/anchor.min.js"></script>
 <script>
    anchors.add();
 </script>
+```
+
+…or import it globally with ES Modules:
+
+```js
+import 'https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js';
+
+anchors.add();
 ```
 
 ## Usage
@@ -40,18 +48,24 @@ See **[the Documentation](https://www.bryanbraun.com/anchorjs/#basic-usage)** fo
 
 Currently Supports: IE9+ and modern browsers
 
-## Contributing [![devDependency Status](https://img.shields.io/david/dev/bryanbraun/anchorjs.svg?style=flat)](https://david-dm.org/bryanbraun/anchorjs?type=dev)
+## Contributing
 
 To contribute:
 
 1. Fork/Clone the repo.
-2. Make your changes.
+2. Make your changes (the main source file is `anchor.js`).
 3. Write tests as needed.
 4. Run tests locally to confirm everything is working:
    - Install test modules: Run `npm ci`
    - Run all tests: `npm test`
 5. Minify and prepare the code: `npm run build`
 6. Submit a Pull Request.
+
+### Docs
+
+The docs site (in `/docs`) is a good place to test changes visually, because it has a lot of AnchorJS examples. The site can be viewed locally by opening `/docs/index.html` in a web browser. The docs are written in plain HTML and can be edited directly.
+
+The version of AnchorJS used in the docs (`docs-anchor.js`) is a copy of the true source file (`anchor.js`), and is unminified (for easy testing, editing, and debugging). You don't need to include changes to `docs-anchor.js` in your PR. `docs-anchor.js` is overwritten to the latest version of AnchorJS source as part of `npm run build` (which is run when publishing a new version of anchor-js).
 
 ## License
 

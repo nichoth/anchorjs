@@ -463,7 +463,7 @@ describe('AnchorJS', function() {
       anchors.add('h1');
       anchorNode = document.querySelector('h1').firstChild;
       expect(anchorNode.style.position).toEqual('absolute');
-      expect(anchorNode.style.marginLeft).toEqual('-1em');
+      expect(anchorNode.style.marginLeft).toEqual('-1.25em');
     });
 
     it('`right`, places the anchor to the right of the text.', function() {
@@ -471,7 +471,7 @@ describe('AnchorJS', function() {
       anchors.add('h1');
       anchorNode = document.querySelector('h1').lastChild;
       expect(anchorNode.style.position).toEqual('');
-      expect(anchorNode.style.marginLeft).toEqual('');
+      expect(anchorNode.style.marginLeft).toEqual('0.1875em');
     });
   });
 
@@ -517,16 +517,7 @@ describe('AnchorJS', function() {
       expect(opacity).toEqual('1');
     });
 
-    it('`touch` invokes the `always` behavior for touch devices', function() {
-      spyOn(anchors, 'isTouchDevice').and.returnValue(true);
-      anchors.options.visible = 'touch';
-      anchors.add('h1');
-      opacity = document.querySelector('.anchorjs-link').style.opacity;
-      expect(opacity).toEqual('1');
-    });
-
-    it('`touch` invokes the `hover` behavior for non-touch devices', function() {
-      spyOn(anchors, 'isTouchDevice').and.returnValue(false);
+    it('`touch` invokes the `hover` behavior (a fallback for the legacy `touch` option)', function() {
       anchors.options.visible = 'touch';
       anchors.add('h1');
       opacity = document.querySelector('.anchorjs-link').style.opacity;
